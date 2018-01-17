@@ -1,0 +1,106 @@
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	background: none transparent;
+	color: red;
+}
+
+.clock-container {
+	width: 100%;
+	height: 100%;
+	background: #000;
+	border-radius: 20px;
+	display: inline-block;
+}
+
+.clock-padding {
+	margin: 1%;
+	margin-top: 0;
+	padding-top: 1%;
+}
+
+.clock-label {
+	font-size: 10pt;
+	font-family: sans-serif;
+}
+
+.clock-face {
+	font-family: sans-serif;
+	font-size: 16pt;
+	color: #F99;
+}
+
+.analogue-clock-container {
+	width: 250px;
+	height: 250px;
+}
+
+.analogue-clock-face {
+	height: 100%;
+	width: 100%;
+	background: #FFF;
+	border-radius: 50%;
+	border: 5px solid #000;
+	position: relative;
+}
+
+.analogue-hour-hand {
+	width: 3px;
+	height: 20%;
+	background: #FF0000;
+	position: absolute;
+	top: 30%;
+	left: 50%;
+}
+
+.analogue-minute-hand {
+	width: 3px;
+	height: 40%;
+	background: #FF0000;
+	position: absolute;
+	top: 10%;
+	left: 50%;
+}
+
+.analogue-second-hand {
+	width: 1px;
+	height: 40%;
+	background: #FF0000;
+	position: absolute;
+	top: 10%;
+	left: 50%;
+}
+
+.analogue-hour-hand, .analogue-minute-hand, .analogue-second-hand {
+	transform-origin: bottom;
+	transition: transform 0.01s ease-in;
+}
+
+
+.12-tick {}
+.tick-1 { transform: rotate(30deg); }
+.tick-2 { transform: rotate(60deg); }
+.tick-3 { transform: rotate(90deg); }
+.tick-4 { transform: rotate(120deg); }
+.tick-5 { transform: rotate(120deg); }
+.tick-5 { transform: rotate(150deg); }
+.tick-6 { transform: rotate(180deg); }
+.tick-7 { transform: rotate(210deg); }
+.tick-8 { transform: rotate(240deg); }
+.tick-9 { transform: rotate(270deg); }
+.tick-10 { transform: rotate(300deg); }
+.tick-11 { transform: rotate(330deg); }
+
+.analogue-tick {
+	width: 2px;
+	height: 35%;
+	border-top: 10px solid #000000;
+	transform-origin: bottom;
+	position: absolute;
+	color: blue;
+	top: 10%;
+	left: 50%;
+}
+

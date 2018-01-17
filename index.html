@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Sidereal Time</title>
+		<link rel='stylesheet' type='text/css' href='main.css' />
+
+		<script src="https://use.fontawesome.com/f4079394d0.js"></script>
+		<script type='text/javascript' src='sidereal.js'></script>
+		<script>
+			window.addEventListener('load' , function() {
+				var sd = new SiderealClock();
+				var clel = document.getElementById('sidereal-clock');
+
+				var utcel = document.getElementById('utc-display')
+				var ltel = document.getElementById('lt-display')
+				var jdel = document.getElementById('jd-display')
+				var gmstel = document.getElementById('gmst-display')
+				var lmstel = document.getElementById('lmst-display')
+
+				var lmst_h_hand = document.getElementById('lmst-hour-hand');
+				var lmst_m_hand = document.getElementById('lmst-minute-hand');
+				var lmst_s_hand = document.getElementById('lmst-second-hand');
+
+				var utc_h_hand = document.getElementById('utc-hour-hand');
+				var utc_m_hand = document.getElementById('utc-minute-hand');
+				var utc_s_hand = document.getElementById('utc-second-hand');
+
+				sd.addEventListener('start', function(event){
+
+				});
+
+				sd.addEventListener('tick', function(event) {
+					utcel.innerHTML = String(event.utc);
+					ltel.innerHTML = String(event.lt);
+					jdel.innerHTML = String(event.jd);
+					jdel.innerHTML = String(event.jd);
+					gmstel.innerHTML = String(sd.hms_to_hms_string(event.gmst));
+					lmstel.innerHTML = String(sd.hms_to_hms_string(event.lmst));
+
+					lmst_h_hand.style.transform = "rotate(" + (event.lmst.h + event.lmst.m / 60 + event.lmst.s / 3600) * (360 / 12) + "deg)";
+					lmst_m_hand.style.transform = "rotate(" + (event.lmst.m + event.lmst.s / 60) * (360 / 60) + "deg)";
+					lmst_s_hand.style.transform = "rotate(" + event.lmst.s * (360 / 60) + "deg)";
+
+					utc_h_hand.style.transform = "rotate(" + (event.gmst.h + event.gmst.m / 60 + event.gmst.s / 3600) * (360 / 12) + "deg)";
+					utc_m_hand.style.transform = "rotate(" + (event.gmst.m + event.gmst.s / 60) * (360 / 60) + "deg)";
+					utc_s_hand.style.transform = "rotate(" + event.gmst.s * (360 / 60) + "deg)";
+				});
+
+				sd.geolocate();
+				sd.start();
+
+			}, false);
+		</script>
+	</head>
+
+<body>
+	<div class='clock-container' id='sidereal-clock'>
+		<div class='clock-padding'>
+			<label class='clock-label'>Universal Coordinates Time (UTC)</label>
+			<div id='utc-display' class='clock-face'></div>
+
+			<label class='clock-label'>Local Time</label>
+			<div id='lt-display' class='clock-face'></div>
+
+			<label class='clock-label'>Julian Date</label>
+			<div id='jd-display' class='clock-face'></div>
+
+			<label class='clock-label'>Greenwich Mean Sidereal Time (GMST)</label>
+			<div id='gmst-display' class='clock-face'></div>
+
+			<label class='clock-label'>Local Mean Sidereal Time (LMST)</label>
+			<div id='lmst-display' class='clock-face'></div>
+
+			<label for='show-config'>
+				<i class="fa fa-cog" aria-hidden="true"></i>
+			</label>
+		</div>
+
+		<div class='analogue-clock-container'>
+			<div class='analogue-clock-face'>
+
+				<div class='analogue-tick tick-12'></div>
+				<div class='analogue-tick tick-1'></div>
+				<div class='analogue-tick tick-2'></div>
+				<div class='analogue-tick tick-3'></div>
+				<div class='analogue-tick tick-4'></div>
+				<div class='analogue-tick tick-5'></div>
+				<div class='analogue-tick tick-6'></div>
+				<div class='analogue-tick tick-7'></div>
+				<div class='analogue-tick tick-8'></div>
+				<div class='analogue-tick tick-9'></div>
+				<div class='analogue-tick tick-10'></div>
+				<div class='analogue-tick tick-11'></div>
+
+				<div id='lmst-hour-hand' class='analogue-hour-hand'></div>
+				<div id='lmst-minute-hand' class='analogue-minute-hand'></div>
+				<div id='lmst-second-hand' class='analogue-second-hand'></div>
+			</div>
+		</div>
+
+		<div class='analogue-clock-container'>
+			<div class='analogue-clock-face'>
+
+				<div class='analogue-tick tick-12'></div>
+				<div class='analogue-tick tick-1'></div>
+				<div class='analogue-tick tick-2'></div>
+				<div class='analogue-tick tick-3'></div>
+				<div class='analogue-tick tick-4'></div>
+				<div class='analogue-tick tick-5'></div>
+				<div class='analogue-tick tick-6'></div>
+				<div class='analogue-tick tick-7'></div>
+				<div class='analogue-tick tick-8'></div>
+				<div class='analogue-tick tick-9'></div>
+				<div class='analogue-tick tick-10'></div>
+				<div class='analogue-tick tick-11'></div>
+				
+				<div id='utc-hour-hand' class='analogue-hour-hand'></div>
+				<div id='utc-minute-hand' class='analogue-minute-hand'></div>
+				<div id='utc-second-hand' class='analogue-second-hand'></div>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
